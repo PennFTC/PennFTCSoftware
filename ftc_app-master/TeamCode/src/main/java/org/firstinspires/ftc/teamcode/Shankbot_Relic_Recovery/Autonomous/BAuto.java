@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.Autonomous;
 // this is the package that was given that allows teams to run and create programs for ftc.
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -10,6 +10,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.Class_Files.HardwareShankbot;
+
 // Imports are required to import the needed information from the package to allow the functions and
 // hardware devices to run as properly and as told so.
 ///////////////////////////////////////////////////////////// Rewrite //////////////////////////////
@@ -22,10 +24,8 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
     // all the needed hardware devices that are on our robot.
     boolean bLedOn = true; // yes or no statement to indicate the light on the color sensor.
     boolean bLedOff = false; // yes or no statement to indicat ethe light on the color sensor.
-    boolean lastResetState = false;
-    boolean curResetState  = false;
-    OpenGLMatrix lastLocation = null;
-    VuforiaLocalizer vuforia;
+    boolean lastResetState = false; boolean curResetState  = false;
+    OpenGLMatrix lastLocation = null;   VuforiaLocalizer vuforia;
     @Override
     public void runOpMode() {
         bot.init(hardwareMap); // importing the hardware settings that are defined in HardwareShank
@@ -48,33 +48,28 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
                 "VuMark");
         VuforiaTrackable relicTemplate = relicTrackables.get(0);
         relicTemplate.setName("relicVuMarkTemplate");
-        telemetry.addData(">", "Calibrating Gyro");
-        telemetry.update();
+        telemetry.addData(">", "Calibrating Gyro"); telemetry.update();
         bot.MRgyro.calibrate();
         while (!isStopRequested() && bot.MRgyro.isCalibrating())  {
             sleep(50);
             idle();
         }
         // we need to calibrate our gyro sensor so we can get proper readings.
-        telemetry.addData(">", "Robot Ready. Press To Start");
-        telemetry.update();
+        telemetry.addData(">", "Robot Ready. Press To Start");  telemetry.update();
         // telemetry to indicate that the robot is ready.
         bot.leftdrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bot.rightdrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
         while (!isStarted()) {
             telemetry.addData(">", "Robot Heading = %d",
                     bot.MRgyro.getIntegratedZValue());
             telemetry.update();
         }
-        bot.MRgyro.resetZAxisIntegrator();
-        telemetry.update();
+        bot.MRgyro.resetZAxisIntegrator();  telemetry.update();
         // before we start the program, we are reasuring that the left and right drives are running
         // based on encoders, we are also getting the telemetry data from the gryo sensor to give
         // its heading or z value.
 ////////////////////////////////////////////////////////////////////////////// RUN OPMODE //////////
         waitForStart();
-
         relicTrackables.activate();
         while (opModeIsActive()) {
             telemetry.addData("in", "%.2f in", // get the distance from the range
@@ -85,25 +80,19 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
             telemetry.update();
             if (vuMark == RelicRecoveryVuMark.LEFT) {
                 telemetry.addData("VuMark", "Left visible", vuMark);
-                standard();
-                drivetoleft();
-                insert();
+                standard(); drivetoleft(); insert();
                 sleep(1012001010);
                 // We check for the vumark if it is the left one then we perform the methods.
             } else {
                 if (vuMark == RelicRecoveryVuMark.CENTER) {
                     telemetry.addData("VuMark", "Center Visible");
-                    standard();
-                    drivetocenter();
-                    insert();
+                    standard(); drivetocenter(); insert();
                     sleep(1012001010);
                     // We check for the vumark if it is the center one then we perform the methods.
                 } else {
                     if (vuMark == RelicRecoveryVuMark.RIGHT) {
                         telemetry.addData("VuMark", "Right Visible");
-                        standard();
-                        drivetoright();
-                        insert();
+                        standard(); drivetoright(); insert();
                         sleep(1012001010);
                         // We check for the vumark if it is the right one then we perform the methods.
                     } else {
@@ -111,10 +100,7 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
                             telemetry.addData("Vumark", "I Ain't seen nothing");
                         } // Should the robot not be able to see a vumark, the robot will not run,
                         // this helps prevent potential issues.
-                    }
-                }
-            }
-        }
+                        }}}}
         float[] hsvValues = new float[3];
         final float values[] = hsvValues;
         telemetry.addLine()
@@ -124,16 +110,14 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
     // time has passed on the phone.
     /////////////////////////////////////////////////////////////////////////// METHODS ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     private void stapD() {
-        bot.leftdrive.setPower(0);
-        bot.rightdrive.setPower(0);
+        bot.leftdrive.setPower(0);  bot.rightdrive.setPower(0);
     } // simple method that is used quite often it stops the drive motors.
  /*   private void stapA() {
         bot.arm.setPower(0);
     } */
 
     public void getBallColor() {
-        bot.colorS.enableLed(bLedOn);
-        lowerThwack();
+        bot.colorS.enableLed(bLedOn);   lowerThwack();
         telemetry.addLine()
                 .addData("Color", bot.colorS.blue())
                 .addData("Color", bot.colorS.red())
@@ -146,11 +130,7 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
                     .addData("Color", bot.colorS.blue())
                     .addData("Color", bot.colorS.red())
                     .addData("in", "%.2f in", bot.rangeSensor.getDistance(DistanceUnit.INCH));
-
-            driveoffstoneB();
-            stapD();
-            raiseThwack();
-            stapD();
+            driveoffstoneB();   stapD();    raiseThwack();  stapD();
             sleep(500);
         } else {
             telemetry.addLine()
@@ -158,27 +138,20 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
                     .addData("Color", bot.colorS.red())
                     .addData("in", "%.2f in", bot.rangeSensor.getDistance(DistanceUnit.INCH));
 
-            driveoffstoneR();
-            stapD();
-            raiseThwack();
-            stapD();
+            driveoffstoneR();   stapD();    raiseThwack();  stapD();
             sleep(500);
         }
     }
     public void lowerThwack() {
-        bot.thwack.setPosition(1);
-        sleep(2000);
+        bot.thwack.setPosition(1);  sleep(2000);
     }
     public void raiseThwack() {
-        bot.thwack.setPosition(0);
-        sleep(500);
+        bot.thwack.setPosition(0);  sleep(500);
     }
 
     public void driveoffstoneR() {
-        bot.rightdrive.setPower(.1);
-        bot.leftdrive.setPower(.1);
-        sleep(500);
-        stapD();
+        bot.rightdrive.setPower(.1); bot.leftdrive.setPower(.1);
+        sleep(500); stapD();
     }
     public void driveoffstoneB() {
         bot.rightdrive.setPower(-.1);
@@ -236,7 +209,6 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
         bot.leftdrive.setPower(-.25);
         bot.rightdrive.setPower(-.25);
     }
-
     public void turnCW90() {
         bot.MRgyro.calibrate();
         sleep(750);
@@ -266,7 +238,6 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
             telemetry.update(); }
         stapD();
     }
-
     public void drivetoleft() {
         sleep(500);
         forward();
@@ -281,21 +252,16 @@ public class BAuto extends LinearOpMode {// Defining that this file named BAuto 
         sleep(500);
         forward();
         while(bot.rangeSensor.getDistance(DistanceUnit.INCH) < 28) {
-            telemetry.addData("in", "%.2f in", bot.rangeSensor.getDistance(DistanceUnit.INCH));
+            telemetry.addData("in", "%.2f in",
+                    bot.rangeSensor.getDistance(DistanceUnit.INCH));
             telemetry.update();
-        }
-        stapD();
-        sleep(500);
+        }stapD();sleep(500);
     }
     public void drivetoright() {
-        sleep(500);
-        forward();
+        sleep(500); forward();
         while(bot.rangeSensor.getDistance(DistanceUnit.INCH) < 23) {
-            telemetry.addData("in", "%.2f in", bot.rangeSensor.getDistance(DistanceUnit.INCH));
+            telemetry.addData("in", "%.2f in",
+                    bot.rangeSensor.getDistance(DistanceUnit.INCH));
             telemetry.update();
         }
-        stapD();
-        sleep(500);
-    }
-}
-
+        stapD();sleep(500); }}
