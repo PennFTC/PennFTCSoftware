@@ -1,30 +1,28 @@
 package org.firstinspires.ftc.teamcode.Samples.Teles;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp
 //@Disabled
-public class Sample_Clawbot extends OpMode {
-    DcMotor leftdrive, rightdrive;
-    Servo leftclaw, rightclaw;
+public class Sample_Shooter_Bot extends OpMode {
+    DcMotor leftdrive, rightdrive, leftwheel, rightwheel;
     public void init() {
         leftdrive = hardwareMap.dcMotor.get("leftdrive");
         rightdrive = hardwareMap.dcMotor.get("rightdrive");
-        leftclaw = hardwareMap.servo.get("leftclaw");
-        rightclaw = hardwareMap.servo.get("rightclaw");
+        leftwheel = hardwareMap.dcMotor.get("leftwheel");
+        rightwheel = hardwareMap.dcMotor.get("rightwheel");
 
         leftdrive.setPower(0);  rightdrive.setPower(0);
-        leftclaw.setPosition(0);    rightclaw.setPosition(1);
+        leftwheel.setPower(0);  rightwheel.setPower(0);
         rightdrive.setDirection(DcMotorSimple.Direction.REVERSE);
-    }
+        rightwheel.setDirection(DcMotorSimple.Direction.REVERSE);   }
     public void loop() {
         leftdrive.setPower(gamepad1.left_stick_y); rightdrive.setPower(gamepad1.right_stick_y);
-        if (gamepad1.a) {
-            leftclaw.setPosition(1);    rightclaw.setPosition(0);
+        if (gamepad1.left_bumper) {
+            leftwheel.setPower(1);  rightwheel.setPower(1);
+        } else { if (gamepad1.right_bumper) {
+            leftwheel.setPower(-1); rightwheel.setPower(-1);
         } else {
-            leftclaw.setPosition(0);    rightclaw.setPosition(1);
-        }}}
+            leftwheel.setPower(0);  rightwheel.setPower(0);                                     }}}}
