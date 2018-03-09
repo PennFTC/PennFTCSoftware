@@ -9,8 +9,13 @@ import org.firstinspires.ftc.teamcode.Programs.Brazen.HardwareBrazen;
 //@Disabled
 public class Drive_Brazen extends OpMode {
     HardwareBrazen robot = new HardwareBrazen();
-    public void init() {robot.init(hardwareMap);}
-    public void loop() { double drive;
+
+    public void init() {
+        robot.init(hardwareMap);
+    }
+
+    public void loop() {
+        double drive;
         double turn;
         double left;
         double right;
@@ -29,6 +34,11 @@ public class Drive_Brazen extends OpMode {
         robot.lift.setPower(gamepad1.right_stick_y);
 
         if (gamepad1.a) {
-            robot.leftclaw.setPosition(0); robot.rightclaw.setPosition(1);
+            robot.leftclaw.setPosition(0);
+            robot.rightclaw.setPosition(1);
         } else {
-            robot.leftclaw.setPosition(1); robot.rightclaw.setPosition(0);  }}}
+            robot.leftclaw.setPosition(1);
+            robot.rightclaw.setPosition(0);
+        }
+    }
+}

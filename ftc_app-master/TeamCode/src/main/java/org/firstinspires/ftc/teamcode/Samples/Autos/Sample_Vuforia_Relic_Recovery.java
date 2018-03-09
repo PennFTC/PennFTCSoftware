@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.Samples.Autos;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
@@ -16,14 +16,15 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-@Autonomous(name="Sample_Vuforia_Iden")
+@Autonomous(name = "Sample_Vuforia_Iden")
 //@Disabled
 public class Sample_Vuforia_Relic_Recovery extends LinearOpMode {
     public static final String TAG = "Vuforia VuMark Sample";
     OpenGLMatrix lastLocation = null;
     VuforiaLocalizer vuforia;
 
-    @Override public void runOpMode() {
+    @Override
+    public void runOpMode() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
 
@@ -50,7 +51,7 @@ public class Sample_Vuforia_Relic_Recovery extends LinearOpMode {
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
             if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
                 telemetry.addData("VuMark", "%s visible", vuMark);
-                OpenGLMatrix pose = ((VuforiaTrackableDefaultListener)relicTemplate.getListener()).getPose();
+                OpenGLMatrix pose = ((VuforiaTrackableDefaultListener) relicTemplate.getListener()).getPose();
                 telemetry.addData("Pose", format(pose));
                 if (pose != null) {
                     VectorF trans = pose.getTranslation();
@@ -62,14 +63,14 @@ public class Sample_Vuforia_Relic_Recovery extends LinearOpMode {
                     double rY = rot.secondAngle;
                     double rZ = rot.thirdAngle;
                 }
-            }
-            else {
+            } else {
                 telemetry.addData("VuMark", "not visible");
             }
 
             telemetry.update();
         }
     }
+
     String format(OpenGLMatrix transformationMatrix) {
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
     }

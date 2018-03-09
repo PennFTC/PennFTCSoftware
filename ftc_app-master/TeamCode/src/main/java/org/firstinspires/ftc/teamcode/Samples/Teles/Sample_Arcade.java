@@ -6,17 +6,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp
-//@Disabled
 public class Sample_Arcade extends OpMode {
     DcMotor leftdrive, rightdrive;
-
-    public void start() {
-    }
 
     public void init() {
         leftdrive = hardwareMap.dcMotor.get("leftdrive");
         rightdrive = hardwareMap.dcMotor.get("rightdrive");
-
         leftdrive.setPower(0);
         rightdrive.setPower(0);
 

@@ -16,16 +16,17 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
  */
 @TeleOp
 @Disabled
-public class Sample_Telemetry_Gyro_Sensor extends OpMode{
+public class Sample_Telemetry_Gyro_Sensor extends OpMode {
     public IntegratingGyroscope gyro;
     public ModernRoboticsI2cGyro MRgyro;
 
     public void init() {
         MRgyro = hardwareMap.get(ModernRoboticsI2cGyro.class, "gyro"); // naming the gyro
         // sensor to be named gyro.
-        gyro = (IntegratingGyroscope)MRgyro; // setting the gyro sensor to be set as a Modern
+        gyro = (IntegratingGyroscope) MRgyro; // setting the gyro sensor to be set as a Modern
         // robotics gyro.
     }
+
     public void loop() {
         boolean bPrevState = false;
         boolean bCurrState = false;
@@ -70,9 +71,13 @@ public class Sample_Telemetry_Gyro_Sensor extends OpMode{
     }
 
 
-    String formatRaw(int rawValue) {return String.format("%d", rawValue);} // string values for raw data
+    String formatRaw(int rawValue) {
+        return String.format("%d", rawValue);
+    } // string values for raw data
 
-    String formatRate(float rate) {return String.format("%.3f", rate);}
+    String formatRate(float rate) {
+        return String.format("%.3f", rate);
+    }
 
     String formatFloat(float rate) {
         return String.format("%.3f", rate);

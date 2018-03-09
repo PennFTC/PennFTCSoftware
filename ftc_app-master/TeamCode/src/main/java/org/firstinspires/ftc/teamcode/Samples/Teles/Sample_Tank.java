@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp //bungus - Tam was here
+@TeleOp 
 //@Disabled
 public class Sample_Tank extends OpMode {
     public DcMotor leftdrive, rightdrive;

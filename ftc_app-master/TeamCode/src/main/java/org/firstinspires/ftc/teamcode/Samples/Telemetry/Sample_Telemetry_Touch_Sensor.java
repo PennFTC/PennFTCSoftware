@@ -11,15 +11,17 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 //@Disabled
 public class Sample_Telemetry_Touch_Sensor extends OpMode {
     DigitalChannel touchSensor;
+
     public void init() {
         touchSensor = hardwareMap.get(DigitalChannel.class, "touchSensor");
         touchSensor.setMode(DigitalChannel.Mode.INPUT);
     }
+
     public void loop() {
         if (touchSensor.getState() == true) {
             telemetry.addData("Touch Sensor", "Not Pressed");
         } else {
-            telemetry.addData("Touch Sensor" , "Is Pressed");
+            telemetry.addData("Touch Sensor", "Is Pressed");
         }
     }
 }
