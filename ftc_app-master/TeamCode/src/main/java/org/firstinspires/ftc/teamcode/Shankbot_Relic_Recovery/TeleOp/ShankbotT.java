@@ -1,8 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.TeleOp;
 // This is the package that we were given that contains all the required components of a ftc program.
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.Class_Files.HardwareShankbot;
+
 /* We need imports in our program to be able to use the different functions that allow our
 program to be what it is and to allow the different hardware components to work as they should. */
 @TeleOp(name = "shankbotT") /*
@@ -25,7 +28,7 @@ public class ShankbotT extends OpMode {
         // what every part is.
         boolean bLedOn = true; // This is a yes or no function that we use to turn on the led on the color sensor.
         boolean bLedOff= false; // This is a yes or no function that we use to turn off the led on the color sensor.
-        bot.colorS.enableLed(bLedOff); // This sets the led on the color sensor to be off.
+        //bot.colorS.enableLed(bLedOff); // This sets the led on the color sensor to be off.
         telemetry.addData("Status", "Ready"); // We have telemetry call out a message
         // from the phone to tell the drivers that the robot is ready to run
     }

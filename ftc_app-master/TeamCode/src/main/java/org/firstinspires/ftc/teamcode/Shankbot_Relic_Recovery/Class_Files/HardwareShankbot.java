@@ -39,20 +39,7 @@ public class HardwareShankbot // this is the name that we can import into other 
     public Servo extend = null; // creating the other relic servo on the robot and indicating that
     // it is a servo.
 /////////////// SENSORS \\\\\\\\\\\\\\\\
-    public DistanceSensor colorR = null; // creating the range sensor and indicating that it is a
-    // distance sensor.
-    public ColorSensor colorS = null; // creating the color sensor and indicating that it is a color
-    // sensor.
-    public OpenGLMatrix lastLocation = null; // creating the matrix that it is used for vuforia.
-    public VuforiaLocalizer vuforia = null; // creating the localizer that is need to use vuforia.
-    public ModernRoboticsI2cRangeSensor rangeSensor = null; // creating one of the ultrasonic/range
-    // sensors and indicating that it is a range sensor.
-    public ModernRoboticsI2cRangeSensor rangeSensor1 = null; // creating one of the ultrasonic/range
-    // sensors and indicating that it is a range sensor.
-    public IntegratingGyroscope gyro = null; // creating the gryoscope and indicating that it is a
-    // gyro.
-    public ModernRoboticsI2cGyro MRgyro = null; // creating the modern robotics gyro and indicating
-    // that it is a modern robotics gyro.
+
     HardwareMap hwMap           =  null; // shortening HardwareMap to hwMap so we don't have to type
     // as much.
     public ElapsedTime mRuntime  = new ElapsedTime(); // creating time as a variable
@@ -126,18 +113,7 @@ public class HardwareShankbot // this is the name that we can import into other 
         thwack.setPosition(.8); // setting the default position of the color arm.
         extend.setPosition(1); // setting the default position of the other relic servo.
         // Sensor Config \\
-        colorR = hwMap.get(DistanceSensor.class, "color"); // naming the range part of
-        // the color sensor to be named color.
-        colorS = hwMap.colorSensor.get("color"); // naming the color part of the color sensor to be
-        // named color.
-        rangeSensor = hwMap.get(ModernRoboticsI2cRangeSensor.class, "r0"); // naming one
-        // of the range sensors to be ne named r0.
-        rangeSensor1 = hwMap.get(ModernRoboticsI2cRangeSensor.class, "r1"); // naming the
-        // other range sensor to be named r1.
-        MRgyro = hwMap.get(ModernRoboticsI2cGyro.class, "gyro"); // naming the gyro
-        // sensor to be named gyro.
-        gyro = (IntegratingGyroscope)MRgyro; // setting the gyro sensor to be set as a Modern
-        // robotics gyro.
+
         boolean lastResetState = false;
         boolean curResetState  = false;
     }}

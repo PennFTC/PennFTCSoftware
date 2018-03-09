@@ -23,7 +23,7 @@ public class Drive_Beta extends OpMode {
         final double v4 = r * Math.cos(robotAngle) - rightX;
         robot.leftfront.setPower(v1);   robot.rightfront.setPower(v2);
         robot.leftback.setPower(v3);    robot.rightback.setPower(v4);
-        robot.lift.setPower(gamepad2.left_stick_y);
+        robot.lift.setPower(gamepad2.left_trigger);
         if (gamepad2.right_bumper) {
             robot.leftbottomclaw.setPosition(1);   robot.rightbottomclaw.setPosition(0);
         } else {

@@ -33,6 +33,7 @@ public class Alyssa_Rube_Goldberg extends LinearOpMode{
 
         waitForStart();
 
+
     }
     public void stopMotors() {
         motor1.setPower(0); motor2.setPower(0); motor3.setPower(0);
