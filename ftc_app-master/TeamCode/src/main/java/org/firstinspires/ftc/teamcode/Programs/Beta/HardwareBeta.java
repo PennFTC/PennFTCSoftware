@@ -24,7 +24,7 @@ public class HardwareBeta {
         lefttopclaw = hwMap.servo.get("leftopclaw");
         righttopclaw = hwMap.servo.get("righttopclaw");
 
-        rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightback.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftfront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftback.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 }

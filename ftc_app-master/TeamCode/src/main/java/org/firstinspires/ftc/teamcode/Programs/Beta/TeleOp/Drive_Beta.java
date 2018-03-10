@@ -30,16 +30,15 @@ public class Drive_Beta extends OpMode {
         robot.rightfront.setPower(v2);
         robot.leftback.setPower(v3);
         robot.rightback.setPower(v4);
-        robot.lift.setPower(gamepad1.left_trigger);
-        robot.lift.setPower(-gamepad1.right_trigger);
-        if (gamepad2.right_bumper) {
+        robot.lift.setPower(gamepad1.right_stick_y);
+        if (gamepad1.right_bumper) {
             robot.leftbottomclaw.setPosition(1);
             robot.rightbottomclaw.setPosition(0);
         } else {
             robot.leftbottomclaw.setPosition(0);
             robot.rightbottomclaw.setPosition(1);
         }
-        if (gamepad2.left_bumper) {
+        if (gamepad1.left_bumper) {
             robot.lefttopclaw.setPosition(1);
             robot.righttopclaw.setPosition(0);
         } else {
