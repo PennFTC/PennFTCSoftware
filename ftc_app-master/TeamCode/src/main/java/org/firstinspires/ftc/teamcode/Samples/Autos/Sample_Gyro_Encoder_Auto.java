@@ -88,33 +88,10 @@ public class Sample_Gyro_Encoder_Auto extends LinearOpMode {
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }
+    public void gyroDrive(double speed, double distance, double angle) {
 
-
-    /**
-     * Method to drive on a fixed compass bearing (angle), based on encoder counts.
-     * Move will stop if either of these conditions occur:
-     * 1) Move gets to the desired position
-     * 2) Driver stops the opmode running.
-     *
-     * @param speed    Target speed for forward motion.  Should allow for _/- variance for adjusting heading
-     * @param distance Distance (in inches) to move from current position.  Negative distance means move backwards.
-     * @param angle    Absolute Angle (in Degrees) relative to last gyro reset.
-     *                 0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
-     *                 If a relative angle is required, add/subtract from current heading.
-     */
-    public void gyroDrive(double speed,
-                          double distance,
-                          double angle) {
-
-        int newLeftTarget;
-        int newRightTarget;
-        int moveCounts;
-        double max;
-        double error;
-        double steer;
-        double leftSpeed;
-
-        double rightSpeed;
+        int newLeftTarget;int newRightTarget;int moveCounts;
+        double max;double error;double steer;double leftSpeed;double rightSpeed;
 
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
@@ -180,17 +157,6 @@ public class Sample_Gyro_Encoder_Auto extends LinearOpMode {
         }
     }
 
-    /**
-     * Method to spin on central axis to point in a new direction.
-     * Move will stop if either of these conditions occur:
-     * 1) Move gets to the heading (angle)
-     * 2) Driver stops the opmode running.
-     *
-     * @param speed Desired speed of turn.
-     * @param angle Absolute Angle (in Degrees) relative to last gyro reset.
-     *              0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
-     *              If a relative angle is required, add/subtract from current heading.
-     */
     public void gyroTurn(double speed, double angle) {
 
         // keep looping while we are still active, and not on heading.
@@ -199,17 +165,6 @@ public class Sample_Gyro_Encoder_Auto extends LinearOpMode {
             telemetry.update();
         }
     }
-
-    /**
-     * Method to obtain & hold a heading for a finite amount of time
-     * Move will stop once the requested time has elapsed
-     *
-     * @param speed    Desired speed of turn.
-     * @param angle    Absolute Angle (in Degrees) relative to last gyro reset.
-     *                 0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
-     *                 If a relative angle is required, add/subtract from current heading.
-     * @param holdTime Length of time (in seconds) to hold the specified heading.
-     */
     public void gyroHold(double speed, double angle, double holdTime) {
 
         ElapsedTime holdTimer = new ElapsedTime();
@@ -226,17 +181,6 @@ public class Sample_Gyro_Encoder_Auto extends LinearOpMode {
         leftdrive.setPower(0);
         rightdrive.setPower(0);
     }
-
-    /**
-     * Perform one cycle of closed loop heading control.
-     *
-     * @param speed  Desired speed of turn.
-     * @param angle  Absolute Angle (in Degrees) relative to last gyro reset.
-     *               0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
-     *               If a relative angle is required, add/subtract from current heading.
-     * @param PCoeff Proportional Gain coefficient
-     * @return
-     */
     boolean onHeading(double speed, double angle, double PCoeff) {
         double error;
         double steer;
@@ -270,13 +214,6 @@ public class Sample_Gyro_Encoder_Auto extends LinearOpMode {
         return onTarget;
     }
 
-    /**
-     * getError determines the error between the target angle and the robot's current heading
-     *
-     * @param targetAngle Desired angle (relative to global reference established at last Gyro Reset).
-     * @return error angle: Degrees in the range +/- 180. Centered on the robot's frame of reference
-     * +ve error means the robot should turn LEFT (CCW) to reduce error.
-     */
     public double getError(double targetAngle) {
 
         double robotError;
@@ -287,14 +224,6 @@ public class Sample_Gyro_Encoder_Auto extends LinearOpMode {
         while (robotError <= -180) robotError += 360;
         return robotError;
     }
-
-    /**
-     * returns desired steering force.  +/- 1 range.  +ve = steer left
-     *
-     * @param error  Error angle in robot relative degrees
-     * @param PCoeff Proportional Gain Coefficient
-     * @return
-     */
     public double getSteer(double error, double PCoeff) {
         return Range.clip(error * PCoeff, -1, 1);
     }

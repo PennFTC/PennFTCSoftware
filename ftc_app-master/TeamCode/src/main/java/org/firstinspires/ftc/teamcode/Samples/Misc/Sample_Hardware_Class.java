@@ -4,9 +4,9 @@ package org.firstinspires.ftc.teamcode.Samples.Misc;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Hardware_Class {
+public class Sample_Hardware_Class {
     // Motors Servos and Sensors declaration
-    public Hardware_Class() {
+    public Sample_Hardware_Class() {
     }
 
     public void init(HardwareMap hwMap) {

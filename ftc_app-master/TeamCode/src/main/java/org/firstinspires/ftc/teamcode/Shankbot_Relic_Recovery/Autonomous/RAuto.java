@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.Class_Files.HardwareShankbot;
+import org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.Class_Files.HardwareShankbotS;
 
 // Imports are required to import the needed information from the package to allow the functions and
 // hardware devices to run as properly and as told so.
@@ -20,7 +21,7 @@ import org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.Class_Files.Hardwa
 //@Disabled
 public class RAuto extends LinearOpMode { // Defining that this file named RAuto is a autonomous
     // program or linearopmode.
-    HardwareShankbot bot = new HardwareShankbot(); // This imports from the HardwareShankbot program
+    HardwareShankbotS bot = new HardwareShankbotS(); // This imports from the HardwareShankbot program
     // all the needed hardware devices that are on our robot.
     boolean bLedOn = true; // yes or no statement to indicate the light on the color sensor.
     boolean bLedOff = false; // yes or no statement to indicat ethe light on the color sensor.
