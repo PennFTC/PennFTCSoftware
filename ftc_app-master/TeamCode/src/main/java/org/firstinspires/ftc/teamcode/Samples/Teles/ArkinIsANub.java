@@ -7,19 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import static java.lang.Math.PI;
 
-/**
- * Created by admin2 on 3/15/2018.
- */
-
-public class ArkinIsANub {package org.firstinspires.ftc.teamcode.Samples.Teles;
-
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-
-import static java.lang.Math.PI;
-
     @TeleOp
     public class ArkinIsANub extends OpMode {
         DcMotor leftfront, rightfront, leftback, rightback;
@@ -51,5 +38,3 @@ import static java.lang.Math.PI;
             rightback.setPower(v4);
         }
     }
-
-}
