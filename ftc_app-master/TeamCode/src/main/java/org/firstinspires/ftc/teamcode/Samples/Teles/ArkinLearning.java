@@ -14,11 +14,13 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class ArkinLearning extends OpMode {
     public DcMotor leftdrive, rightdrive;
 
-    public void start()
-    }
-
-    public void init ()
-        leftdrive = hardwareMap.DcMotor.get ("leftdrive");
+    public void start() {}
 
 
-}
+    public void init () {
+        leftdrive = hardwareMap.dcMotor.get ("leftdrive");}
+
+
+        public void loop() {
+
+}}
