@@ -24,7 +24,7 @@ public class Sample_Holonomic extends OpMode {
         rightback.setPower(0);
     }
 
-    public void loop() {// arkin is a poopy butt
+    public void loop() {
         double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
         double robotAngle = Math.atan2(gamepad1.left_stick_y, -gamepad1.left_stick_x) - PI / 4;
         double rightX = -(.25 *(gamepad1.right_stick_x));
