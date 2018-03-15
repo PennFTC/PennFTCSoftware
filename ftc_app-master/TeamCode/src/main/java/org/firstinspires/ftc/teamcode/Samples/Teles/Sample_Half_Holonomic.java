@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import static java.lang.Math.PI;
 
 @TeleOp
-public class Sample_Holonomic extends OpMode {
+public class Sample_Half_Holonomic extends OpMode {
     DcMotor leftfront, rightfront, leftback, rightback;
 
     public void init() {
@@ -24,7 +24,7 @@ public class Sample_Holonomic extends OpMode {
         rightback.setPower(0);
     }
 
-    public void loop() {// arkin is a poopy butt
+    public void loop() {
         double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
         double robotAngle = Math.atan2(gamepad1.left_stick_y, -gamepad1.left_stick_x) - PI / 4;
         double rightX = -(.25 *(gamepad1.right_stick_x));
@@ -32,9 +32,9 @@ public class Sample_Holonomic extends OpMode {
         final double v2 = r * Math.sin(robotAngle) - rightX;
         final double v3 = r * Math.sin(robotAngle) + rightX;
         final double v4 = r * Math.cos(robotAngle) - rightX;
-        leftfront.setPower(v1);
-        rightfront.setPower(v2);
-        leftback.setPower(v3);
-        rightback.setPower(v4);
+        leftfront.setPower(.5 * (v1));
+        rightfront.setPower(.5 * (v2));
+        leftback.setPower(.5 * (v3));
+        rightback.setPower(.5 * (v4));
     }
 }

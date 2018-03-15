@@ -20,20 +20,16 @@ public class Sample_Gyro_Encoder_Auto extends LinearOpMode {
     IntegratingGyroscope gyro;
     ModernRoboticsI2cGyro modernRoboticsI2cGyro;
 
-    static final double COUNTS_PER_MOTOR_REV = 1440;    // eg: TETRIX Motor Encoder
-    static final double DRIVE_GEAR_REDUCTION = 2.0;     // This is < 1.0 if geared UP
-    static final double WHEEL_DIAMETER_INCHES = 4.0;     // For figuring circumference
+    static final double COUNTS_PER_MOTOR_REV = 1440;
+    static final double DRIVE_GEAR_REDUCTION = 2.0;
+    static final double WHEEL_DIAMETER_INCHES = 4.0;
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-
-    // These constants define the desired driving/control characteristics
-    // The can/should be tweaked to suite the specific robot drive train.
-    static final double DRIVE_SPEED = 0.1;     // Nominal speed for better accuracy.
-    static final double TURN_SPEED = 0.5;     // Nominal half speed for better accuracy.
-
-    static final double HEADING_THRESHOLD = 1;      // As tight as we can make it with an integer gyro
-    static final double P_TURN_COEFF = 0.1;     // Larger is more responsive, but also less stable
-    static final double P_DRIVE_COEFF = 0.15;     // Larger is more responsive, but also less stable
+    static final double DRIVE_SPEED = 0.1;
+    static final double TURN_SPEED = 0.5;
+    static final double HEADING_THRESHOLD = 1;
+    static final double P_TURN_COEFF = 0.1;
+    static final double P_DRIVE_COEFF = 0.15;
     ElapsedTime timer = new ElapsedTime();
 
     @Override
@@ -42,48 +38,35 @@ public class Sample_Gyro_Encoder_Auto extends LinearOpMode {
         rightdrive = hardwareMap.dcMotor.get("rightdrive");
         modernRoboticsI2cGyro = hardwareMap.get(ModernRoboticsI2cGyro.class, "gyro");
         gyro = (IntegratingGyroscope) modernRoboticsI2cGyro;
-
         rightdrive.setDirection(DcMotorSimple.Direction.REVERSE);
         leftdrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightdrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        // Send telemetry message to alert driver that we are calibrating;
-        telemetry.addData(">", "Calibrating Gyro");    //
+        telemetry.addData(">", "Calibrating Gyro");
         telemetry.update();
         telemetry.log().add("Gyro Calibrating. Do Not Move!");
         modernRoboticsI2cGyro.calibrate();
-
-        // Wait until the gyro calibration is complete
         timer.reset();
         while (!isStopRequested() && modernRoboticsI2cGyro.isCalibrating()) {
             telemetry.addData("calibrating", "%s", Math.round(timer.seconds()) % 2 == 0 ? "|.." : "..|");
             telemetry.update();
             sleep(50);
         }
-
         telemetry.log().clear();
         telemetry.log().add("Gyro Calibrated. Press Start.");
         telemetry.clear();
         telemetry.update();
-
         leftdrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightdrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        // Wait for the game to start (Display Gyro value), and reset gyro before we move..
         while (!isStarted()) {
             telemetry.addData(">", "Robot Heading = %d", modernRoboticsI2cGyro.getIntegratedZValue());
             telemetry.update();
         }
 
         modernRoboticsI2cGyro.resetZAxisIntegrator();
-        ;
 
-        // Step through each leg of the path,
-        // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        // Put a hold after each turn
-        gyroDrive(DRIVE_SPEED, 10.0, 0.0);    // Drive FWD 48 inches
-        gyroTurn(TURN_SPEED, -45.0);         // Turn  CCW to -45 Degrees
-        gyroHold(TURN_SPEED, -45.0, 0.5);    // Hold -45 Deg heading for a 1/2 second
+        gyroDrive(DRIVE_SPEED, 10.0, 0.0);
+        gyroTurn(TURN_SPEED, -45.0);
+        gyroHold(TURN_SPEED, -45.0, 0.5);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
