@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Programs.Outreach.Bravo2017;
+package org.firstinspires.ftc.teamcode.Programs.Outreach.Bravo2017.Bravo2017;
 // this is the package that was given that allows teams to run and create programs for ftc.
 
 import com.qualcomm.robotcore.hardware.DcMotor;

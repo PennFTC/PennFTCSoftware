@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Samples.Teles;
+package org.firstinspires.ftc.teamcode.Misc.Learning;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -22,5 +22,5 @@ public class ArkinLearning extends OpMode {
 
 
         public void loop() {
-
-}}
+        }
+}
