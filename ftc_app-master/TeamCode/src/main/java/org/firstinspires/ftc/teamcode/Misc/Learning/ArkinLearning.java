@@ -26,13 +26,7 @@ public class ArkinLearning extends OpMode {
     }
 
 
-<<<<<<< HEAD:ftc_app-master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Samples/Teles/ArkinLearning.java
     public void loop() {
         leftdrive.setPower(gamepad1.left_stick_y);
         rightdrive.setPower(gamepad1.right_stick_y);
-    }
-=======
-        public void loop() {
-        }
->>>>>>> 131e6fd6c6831952dc395ce58f217f7f7bfea6cb:ftc_app-master/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Misc/Learning/ArkinLearning.java
-}
+    }}
