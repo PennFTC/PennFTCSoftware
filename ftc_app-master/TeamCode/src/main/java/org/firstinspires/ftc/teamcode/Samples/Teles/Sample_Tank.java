@@ -20,7 +20,7 @@ public class Sample_Tank extends OpMode {
         leftdrive.setPower(0);
         rightdrive.setPower(0);
     }
-//Hi 
+
     public void loop() {
         leftdrive.setPower(gamepad1.left_stick_y);
         rightdrive.setPower(gamepad1.right_stick_y);
