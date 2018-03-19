@@ -18,9 +18,16 @@ public class ArkinLearning extends OpMode {
 
 
     public void init () {
-        leftdrive = hardwareMap.dcMotor.get ("leftdrive");}
+        leftdrive = hardwareMap.dcMotor.get ("leftdrive");
+        rightdrive = hardwareMap.dcMotor.get ("leftdrive");
+        rightdrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightdrive.setPower(0);
+        leftdrive.setPower(0);
+    }
 
 
-        public void loop() {
-
-}}
+    public void loop() {
+        leftdrive.setPower(gamepad1.left_stick_y);
+        rightdrive.setPower(gamepad1.right_stick_y);
+    }
+}
