@@ -6,28 +6,35 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import static com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior.FLOAT;
+
 /**
  * Created by admin2 on 3/19/2018.
  */
 
     @TeleOp
     public class RightStickArcadeCode extends OpMode {
-        DcMotor leftdrive, rightdrive;
-        Servo leftclaw, rightclaw;
+        DcMotor leftdrive, rightdrive, arm;
+    Servo leftclaw, rightclaw;
 
         public void init() {
             leftdrive = hardwareMap.dcMotor.get("leftdrive");
             rightdrive = hardwareMap.dcMotor.get("rightdrive");
+            arm = hardwareMap.dcMotor.get ("arm")
             leftclaw = hardwareMap.servo.get("leftclaw");
             rightclaw = hardwareMap.servo.get("rightclaw");
             leftdrive.setPower(0);
             rightdrive.setPower(0);
+            leftdrive.setZeroPowerBehavior(FLOAT);
+            rightdrive.setZeroPowerBehavior(FLOAT);
             leftclaw.setPosition(0);
             rightclaw.setPosition(1);
             rightdrive.setDirection(DcMotorSimple.Direction.REVERSE);
         }
         //test
         public void loop() {
+
+            arm.setPower(gamepad1.left_stick_y);
             double drive;
             double turn;
             double left;
