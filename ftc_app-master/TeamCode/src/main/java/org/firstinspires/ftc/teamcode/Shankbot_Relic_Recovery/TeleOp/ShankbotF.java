@@ -1,9 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.TeleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.teamcode.Shankbot_Relic_Recovery.Class_Files.HardwareShankbot;
 
 @TeleOp(name = "shankbotF")
 //@Disabled
@@ -20,8 +22,7 @@ public class ShankbotF extends OpMode {
         bot.init(hardwareMap);
         boolean bLedOn = true;
         boolean bLedOff= false;
-
-        bot.colorS.enableLed(bLedOff);
+       // bot.colorS.enableLed(bLedOff);
         telemetry.addData("Status", "Ready");
     }
 
