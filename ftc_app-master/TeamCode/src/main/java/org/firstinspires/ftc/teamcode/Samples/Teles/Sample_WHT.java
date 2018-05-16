@@ -16,16 +16,19 @@ public class Sample_WHT extends OpMode {
         leftdrive = hardwareMap.dcMotor.get("leftdrive");
         rightdrive = hardwareMap.dcMotor.get("rightdrive");
 
-        rightdrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftdrive.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     public void loop() {
         double leftPower; double rightPower;
         if (gamepad1.a) {
             leftPower = (-gamepad1.left_trigger);
             rightPower = (-gamepad1.right_trigger);
-        } else {
-            leftPower = (gamepad1.left_trigger);
+        } else  if (gamepad1.b){
+            leftPower = -(gamepad1.left_trigger);
             rightPower = (gamepad1.right_trigger);
+        } else {
+            leftPower = gamepad1.left_trigger;
+            rightPower = gamepad1.right_trigger;
         }
         leftdrive.setPower(leftPower);
         rightdrive.setPower(rightPower);
